@@ -41,5 +41,12 @@ class TestTicTacToe(unittest.TestCase):
         game.strike_winner()
         self.assertEqual(game.board, [["X", "-", "X"], [" ", " ", " "], [" ", " ", " "]])
 
+    def test_is_valid_input(self):
+        game = TicTacToe()
+        self.assertTrue(game.is_valid_input(1))
+        self.assertTrue(game.is_valid_input(3))
+        self.assertFalse(game.is_valid_input(0))
+        self.assertFalse(game.is_valid_input(4))
+
 if __name__ == "__main__":
     unittest.main()

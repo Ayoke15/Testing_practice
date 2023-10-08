@@ -69,14 +69,28 @@ class TicTacToe:
         print("  1 2 3")
         for i, row in enumerate(self.board):
             print(f"{i+1} {' '.join(row)}")
+    def is_valid_input(self, n):
+        return 1 <= n <= 3
+
+def draw_funny_cat():
+    print(" /\_/\ ")
+    print("( o.o )")
+    print(" > ^ < ")
 
 if __name__ == "__main__":
     game = TicTacToe()
 
     while True:
         game.display_board()
-        row = int(input(f"Player {game.turn}, enter the row (1-3): ")) - 1
-        col = int(input(f"Player {game.turn}, enter the column (1-3): ")) - 1
+        row = int(input(f"Player {game.turn}, enter the row (1-3): "))
+        col = int(input(f"Player {game.turn}, enter the column (1-3): "))
+
+        if not game.is_valid_input(row) or not game.is_valid_input(col):
+            print("Invalid input. Please enter numbers between 1 and 3.")
+            continue
+
+        row -= 1
+        col -= 1
 
         if game.is_cell_empty(row, col):
             if game.turn == "X":
@@ -92,6 +106,7 @@ if __name__ == "__main__":
             game.strike_winner()
             game.display_board()
             print(f"The winner is {winner}!")
+            draw_funny_cat()
             break
 
         game.switch_turn()
