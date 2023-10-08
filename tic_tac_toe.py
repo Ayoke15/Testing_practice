@@ -36,6 +36,40 @@ class TicTacToe:
         for i, row in enumerate(self.board):
             print(f"{i + 1} {' '.join(row)}")
 
+    def strike_winner(self):
+        for row in self.board:
+            if row[0] == row[1] == row[2] and row[0] != " ":
+                row[1] = "-"
+        for col in range(3):
+            if self.board[0][col] == self.board[1][col] == self.board[2][col] and self.board[0][col] != " ":
+                self.board[1][col] = "|"
+        if self.board[0][0] == self.board[1][1] == self.board[2][2] and self.board[0][0] != " ":
+            self.board[1][1] = "\\"
+        if self.board[0][2] == self.board[1][1] == self.board[2][0] and self.board[0][2] != " ":
+            self.board[1][1] = "/"
+
+    def display_board(self):
+        print("  1 2 3")
+        for i, row in enumerate(self.board):
+            print(f"{i+1} {' '.join(row)}")
+
+    def strike_winner(self):
+        for row in self.board:
+            if row[0] == row[1] == row[2] and row[0] != " ":
+                row[1] = "-"
+        for col in range(3):
+            if self.board[0][col] == self.board[1][col] == self.board[2][col] and self.board[0][col] != " ":
+                self.board[1][col] = "|"
+        if self.board[0][0] == self.board[1][1] == self.board[2][2] and self.board[0][0] != " ":
+            self.board[1][1] = "\\"
+        if self.board[0][2] == self.board[1][1] == self.board[2][0] and self.board[0][2] != " ":
+            self.board[1][1] = "/"
+
+    def display_board(self):
+        print("  1 2 3")
+        for i, row in enumerate(self.board):
+            print(f"{i+1} {' '.join(row)}")
+
 if __name__ == "__main__":
     game = TicTacToe()
 
@@ -55,6 +89,8 @@ if __name__ == "__main__":
 
         winner = game.check_winner()
         if winner:
+            game.strike_winner()
+            game.display_board()
             print(f"The winner is {winner}!")
             break
 
